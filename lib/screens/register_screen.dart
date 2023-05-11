@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../screens/login_screens.dart';
+// import '../screens/login_screens.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = '/register';

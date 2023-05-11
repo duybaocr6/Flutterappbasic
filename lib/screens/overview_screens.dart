@@ -25,7 +25,6 @@ class _OverviewScreensState extends State<OverviewScreens> {
     CartPage(),
     ManagerPage(),
     NotificationPage(),
-    // Text('data')
   ];
 
   @override
