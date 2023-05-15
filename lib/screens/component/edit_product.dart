@@ -41,7 +41,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      final productId = ModalRoute.of(context)!.settings.arguments as String;
+      final productId = ModalRoute.of(context)!.settings.arguments as String?;
       if (productId != null) {
         _editedProduct =
             Provider.of<Products>(context, listen: false).findById(productId);
@@ -88,11 +88,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     _form.currentState!.save();
-    if (_editedProduct.id != null) {
+    if (_editedProduct.id.isEmpty) {
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+    } else {
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
-    } else {
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
     }
     Navigator.of(context).pop();
   }
@@ -230,21 +230,21 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       onFieldSubmitted: (_) {
                         _saveForm();
                       },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter an image URL.';
-                        }
-                        if (!value.startsWith('http') &&
-                            !value.startsWith('https')) {
-                          return 'Please enter a valid URL.';
-                        }
-                        if (!value.endsWith('.png') &&
-                            !value.endsWith('.jpg') &&
-                            !value.endsWith('.jpeg')) {
-                          return 'Please enter a valid image URL.';
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'Please enter an image URL.';
+                      //   }
+                      //   if (!value.startsWith('http') &&
+                      //       !value.startsWith('https')) {
+                      //     return 'Please enter a valid URL.';
+                      //   }
+                      //   if (!value.endsWith('.png') &&
+                      //       !value.endsWith('.jpg') &&
+                      //       !value.endsWith('.jpeg')) {
+                      //     return 'Please enter a valid image URL.';
+                      //   }
+                      //   return null;
+                      // },
                       onSaved: (value) {
                         _editedProduct = ProductItem(
                           title: _editedProduct.title,
