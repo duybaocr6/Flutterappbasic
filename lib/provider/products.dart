@@ -98,10 +98,10 @@ class Products with ChangeNotifier {
 
   Future<void> fetchAndSetProducts() async {
     final url = Uri.parse(
-        'https://flutter-project-364fb-default-rtdb.firebaseio.com/products.json');
+        'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/products.json');
     try {
       final response = await http.get(url);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body) as Map<String, dynamic>?;
       if (extractedData == null) {
         return;
       }
@@ -127,7 +127,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(ProductItem product) async {
     final url = Uri.parse(
-        'https://flutter-project-364fb-default-rtdb.firebaseio.com/products.json');
+        'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/products.json');
     try {
       final value = await http.post(
         url,
@@ -159,7 +159,7 @@ class Products with ChangeNotifier {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url = Uri.parse(
-          'https://flutter-project-364fb-default-rtdb.firebaseio.com/products/$id.json');
+          'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/products/$id.json');
       await http.patch(url,
           body: json.encode({
             'title': newProduct.title,
@@ -187,7 +187,7 @@ class Products with ChangeNotifier {
 
   void deleteProduct(String id) {
     final url = Uri.parse(
-        'https://flutter-project-364fb-default-rtdb.firebaseio.com/products/$id.json');
+        'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/products/$id.json');
     final exitingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var exitingProduct = _items[exitingProductIndex];
     _items.removeAt(exitingProductIndex);

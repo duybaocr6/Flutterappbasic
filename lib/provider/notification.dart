@@ -14,7 +14,7 @@ class Notifications with ChangeNotifier {
 
   Future<void> fecthAndSetNotification() async {
     final url = Uri.parse(
-        'https://flutter-project-364fb-default-rtdb.firebaseio.com/order.json');
+        'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/order.json');
     final response = await http.get(url);
     final List<NotificationItem> loadednotifications = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -44,7 +44,7 @@ class Notifications with ChangeNotifier {
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     final url = Uri.parse(
-        'https://flutter-project-364fb-default-rtdb.firebaseio.com/order.json');
+        'https://ecommerceapps-fe735-default-rtdb.firebaseio.com/order.json');
     final timestamp = DateTime.now();
     final response = await http.post(url,
         body: json.encode({

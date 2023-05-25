@@ -166,12 +166,6 @@ class _LoginScreensState extends State<LoginScreens> {
               SizedBox(height: 15),
               FloatingActionButton.extended(
                 onPressed: signInWithGoogle,
-                icon: Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWKZ9OYF0vsfYHFdozFXWdr6VBqSxu7mdHa5izCN7HWw&s',
-                  width: 28,
-                  height: 28,
-                  fit: BoxFit.cover,
-                ),
                 label: Text(
                   'Sign in with Google',
                 ),
